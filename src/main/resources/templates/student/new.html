@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Student Form</title>
+</head>
+<body>
+<div>
+    <div><a href="/">Home</a></div>
+    <h1>Add New Student Form</h1>
+    <h3 th:text="${errors}"></h3>
+    <form action="/student/add" method="post" th:object="${student}">
+        <div>
+            <div> <label for="firstName">FirstName</label></div>
+            <div><input id="firstName" name="firstName" th:value="${student.firstName}" type="text"></div>
+        </div>
+        <div>
+            <div> <label for="middleName">MiddleName</label></div>
+            <div><input id="middleName" name="middleName" th:value="${student.middleName}" type="text"></div>
+        </div>
+        <div>
+            <div> <label for="lastName">LastName</label></div>
+            <div><input id="lastName" name="lastName" th:value="${student.lastName}" type="text"></div>
+        </div>
+        <div>
+            <div><label for="studentNumber">StudentNumber</label></div>
+            <div><input id="studentNumber" name="studentNumber" th:value="${student.studentNumber}" type="text"></div>
+            <div>
+                <span style="color: red" th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}"></span>
+            </div>
+        </div>
+        <div>
+            <label for="enrollmentDate">enrollmentDate</label>
+            <input id="enrollmentDate" name="enrollmentDate" th:value="${student.enrollmentDate}" type="date">
+        </div>
+        <div>
+            <label for="cgpa">cgpa</label>
+            <input id="cgpa" name="cgpa" th:value="${student.cgpa}" type="number">
+        </div>
+        <div>
+            <div> <label for="isInternational">IsInternational</label></div>
+            <select name="isInternational" id="isInternational">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <button id="btnSave" type="submit">Save Student</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

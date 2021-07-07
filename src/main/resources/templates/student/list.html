@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<div>
+    <div><a href="/">Home</a></div>
+    <h1>List of Students</h1>
+    <table border="1" cellpadding="8" cellspacing="2">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>studentNumber</th>
+            <th>FirstName</th>
+            <th>MiddleName</th>
+            <th>LastName</th>
+            <th>Enrollment Date</th>
+            <th>CGPA</th>
+            <th>Is International</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student, c : ${students}">
+            <th th:text="${c.count}+${'.'}"></th>
+            <td th:text="${student.studentNumber}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.middleName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.enrollmentDate}"></td>
+            <td th:text="${student.cgpa}"></td>
+            <td th:text="${student.isInternational}"></td>
+            <td>
+                <a th:href="@{'/student/edit/{studentId}'(studentId=${student.studentId})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{'/student/delete/{studentId}'(studentId=${student.studentId})}">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div><a href="/student/new">Add New Student</a></div>
+</div>
+</body>
+</html>
